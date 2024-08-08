@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vamos nos ver?</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            overflow: hidden;
+        }
+
+        .container {
+            text-align: center;
+            position: relative;
+            z-index: 1;
+            padding: 20px;
+        }
+
+        button {
+            padding: 10px 20px;
+            margin: 10px;
+            font-size: 16px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            color: white;
+            background-color: #4CAF50;
+        }
+
+        #nao {
+            background-color: #f44336;
+        }
+
+        #informacao {
+            display: none;
+        }
+
+        .background {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 99%;
+            height: 99%;
+            background: url('https://i.imgur.com/Sfwn99V.jpeg') no-repeat center center;
+            background-size: contain; /* Ajuste a imagem para caber dentro do contêiner */
+            background-position: center;
+            transform: translate(-50%, -50%);
+            z-index: -1;
+        }
+    </style>
+</head>
+<body>
+    <div class="background"></div>
+    <div class="container" id="pergunta">
+        <h1>Vamos nos ver?</h1>
+        <button id="sim" onclick="selecionarSim()">Sim</button>
+        <button id="nao" onmouseover="moverBotao()">Não</button>
+    </div>
+    <div class="container" id="informacao">
+        <h1>Chamar no insta para mais informações, Duda</h1>
+        <a href="https://www.instagram.com/thomasx044?igsh=NnVqZXY4c3Z6ZWp6&utm_source=qr" target="_blank">Clique aqui para ir ao Instagram</a>
+    </div>
+
+    <script>
+        function moverBotao() {
+            const botaoNao = document.getElementById('nao');
+            const container = document.querySelector('.container');
+
+            const larguraMaxima = container.clientWidth - botaoNao.offsetWidth;
+            const alturaMaxima = container.clientHeight - botaoNao.offsetHeight;
+
+            const novaPosicaoX = Math.floor(Math.random() * larguraMaxima);
+            const novaPosicaoY = Math.floor(Math.random() * alturaMaxima);
+
+            botaoNao.style.position = 'absolute';
+            botaoNao.style.left = `${novaPosicaoX}px`;
+            botaoNao.style.top = `${novaPosicaoY}px`;
+        }
+
+        function selecionarSim() {
+            document.getElementById('pergunta').style.display = 'none';
+            document.getElementById('informacao').style.display = 'block';
+        }
+    </script>
+</body>
+</html>
